@@ -1,0 +1,9 @@
+ports:
+  - port: 8080
+
+checkoutLocation: "go/src/cdn"
+workspaceLocation: "go/src/cdn"
+
+vscode:
+  extensions:
+    - golang.go
