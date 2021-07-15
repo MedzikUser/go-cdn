@@ -29,7 +29,10 @@ func Bot() {
 		// DMIntents: disgord.IntentDirectMessages | disgord.IntentDirectMessageReactions | disgord.IntentDirectMessageTyping,
 	})
 
-	defer client.Gateway().StayConnectedUntilInterrupted()
+	defer func() {
+		err := client.Gateway().StayConnectedUntilInterrupted()
+		common.CheckErr(err, "stay bot connection")
+	}()
 
 	filter, _ := std.NewMsgFilter(ctx, client)
 
