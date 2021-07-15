@@ -6,9 +6,9 @@ import (
 	"gitlab.com/gaming0skar123/go/cdn/config"
 )
 
-func Updater() {
+func CheckUpdates() {
 	// Check on start
-	CheckUpdate()
+	Update()
 
 	ticker := time.NewTicker(config.Latest_Version_Check)
 
@@ -17,7 +17,7 @@ func Updater() {
 	for {
 		select {
 		case <-ticker.C:
-			CheckUpdate()
+			Update()
 
 		case <-quit:
 			ticker.Stop()

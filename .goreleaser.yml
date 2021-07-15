@@ -1,0 +1,22 @@
+project_name: cdn
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - goos:
+      - linux
+    goarch:
+      - amd64
+
+    binary: '{{ .ProjectName }}.out'
+
+archives:
+  - format: tar.gz
+
+    files:
+      - none*
+
+checksum:
+  name_template: 'checksums.txt'

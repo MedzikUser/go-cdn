@@ -3,9 +3,6 @@ OUT_FILE=cdn.out
 build:
 	go build -o ${OUT_FILE}
 
-all:
-	./build.sh
-
 run:
 	go run .
 
@@ -14,4 +11,4 @@ deps:
 
 clean:
 	go clean
-	rm cdn* MD5* SHA256* VERSION
+	rm cdn* dist

@@ -1,33 +1,42 @@
 package update
 
 import (
-	"fmt"
-	"net/http"
 	"os"
 
-	"github.com/inconshreveable/go-update"
+	"github.com/blang/semver"
+	"github.com/rhysd/go-github-selfupdate/selfupdate"
 	"gitlab.com/gaming0skar123/go/cdn/common"
 	"gitlab.com/gaming0skar123/go/cdn/config"
 )
 
+var log = common.Log
+
 func Update() {
-	fmt.Println("Updating...")
+	repo := config.GH_Repo
 
-	url := config.Latest_Binary
-
-	resp, err := http.Get(url)
-	if common.CheckErr(err, "downloading latest binary") {
+	latest, found, err := selfupdate.DetectLatest(repo)
+	if common.CheckErr(err, "detecting letest version") {
 		return
 	}
 
-	defer resp.Body.Close()
-
-	err = update.Apply(resp.Body, update.Options{})
-	if common.CheckErr(err, "self-update binary") {
+	v := semver.MustParse(config.Version)
+	if !found || latest.Version.LTE(v) {
 		return
 	}
 
-	fmt.Println("Updated!")
+	log.Warn("Updating...")
+
+	exe, err := os.Executable()
+	if common.CheckErr(err, "locate executable path") {
+		return
+	}
+
+	err = selfupdate.UpdateTo(latest.AssetURL, exe)
+	if common.CheckErr(err, "update binary") {
+		return
+	}
+
+	log.Info("Updated!")
 
 	defer os.Exit(0)
 }
