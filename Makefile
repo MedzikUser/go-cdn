@@ -6,9 +6,6 @@ build:
 run:
 	go run .
 
-deps:
-	go get -v
-
 clean:
 	go clean
-	rm cdn* dist
+	rm ${OUT_FILE} dist

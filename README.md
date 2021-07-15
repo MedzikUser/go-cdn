@@ -1,13 +1,13 @@
 # Image CDN - API and Discord Bot
 
-![Pipeline Badge](https://gitlab.com/gaming0skar123/go/cdn/badges/main/pipeline.svg)
-
 ## Install Pre-Compile binary
 
-* Linux
-  * Downoad `curl -L https://gitlab.com/gaming0skar123/go/cdn/-/jobs/artifacts/main/raw/cdn-linux-amd64?job=build --output cdn`
-  * Add permissions `chmod +rwx cdn`
-  * Run binary `./cdn`
+* Linux amd64
+  * [Download](https://github.com/MedzikUser/go-cdn/releases) latest version
+  * Unpack file `tar xzf cdn_{VERSION}_linux_amd64.tar.gz`
+  * Create an .env and config.yml file and complete according to .env.schema and config.schema.yml
+  * Add permissions `chmod +rwx cdn.out`
+  * Run binary `./cdn.out`
 
 ## Disable Automatic Updates
 

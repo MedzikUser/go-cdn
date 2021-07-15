@@ -6,69 +6,35 @@ import (
 	"github.com/andersfylling/disgord"
 	"gitlab.com/gaming0skar123/go/cdn/common"
 	"gitlab.com/gaming0skar123/go/cdn/config"
-	"gitlab.com/gaming0skar123/go/cdn/database"
-	"gitlab.com/gaming0skar123/go/cdn/imgur"
 )
+
+func findChannel(channel string) bool {
+	for _, c := range config.Channels {
+		if c == channel {
+			return true
+		}
+	}
+
+	return false
+}
 
 func handleMsg(s disgord.Session, data *disgord.MessageCreate) {
 	m := data.Message
 
-	findVaue := &database.Channel{
-		ID:      m.ChannelID.String(),
-		GuildID: m.GuildID.String(),
-	}
-
-	if !database.FindChannel(findVaue) {
+	if findChannel(m.ChannelID.String()) {
 		return
 	}
 
 	err := s.Channel(m.ChannelID).TriggerTypingIndicator()
-	common.CheckErr(err, "TriggerTypingIndicator()")
-
-	avatarUrl, _ := m.Author.AvatarURL(64, true)
-
-	var url string
+	common.CheckErr(err, "trigger typing")
 
 	if len(m.Attachments) > 0 {
-		url = m.Attachments[0].URL
-	} else {
-		url = m.Content
-	}
-
-	i, err := imgur.UploadFromURL(url)
-	if common.CheckErr(err, "UploadFromURL("+url+")") {
-		mBot, err := m.Reply(ctx, s, disgord.Embed{
-			Title:       "Error",
-			Description: err.Error(),
-			Timestamp:   m.Timestamp,
-			Color:       config.Embed_Color,
-			Footer: &disgord.EmbedFooter{
-				Text:    m.Author.Tag(),
-				IconURL: avatarUrl,
-			},
-		})
-		if !common.CheckErr(err, "send message") {
-			deleteMsg(s, mBot, 5*time.Second)
+		for _, a := range m.Attachments {
+			uploadImg(s, m, a.URL)
 		}
-
-		deleteMsg(s, m, 3*time.Second)
-
-		return
+	} else {
+		uploadImg(s, m, m.Content)
 	}
-
-	_, err = m.Reply(ctx, s, disgord.Embed{
-		Title:     i.Link,
-		Timestamp: m.Timestamp,
-		Color:     config.Embed_Color,
-		Footer: &disgord.EmbedFooter{
-			Text:    m.Author.Tag(),
-			IconURL: avatarUrl,
-		},
-		Image: &disgord.EmbedImage{
-			URL: i.Link,
-		},
-	})
-	common.CheckErr(err, "send message")
 
 	deleteMsg(s, m, 2*time.Second)
 }

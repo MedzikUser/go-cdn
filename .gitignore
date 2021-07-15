@@ -12,13 +12,9 @@
 # Test binary, built with `go test -c`
 *.test
 
-# Output of the go coverage tool, specifically when used with LiteIDE
+# Output
 *.out
-cdn*
-
-# Sums
-MD5SUM
-SHA256SUM
-
-VERSION
 dist/
+
+# Config
+config.yml

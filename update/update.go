@@ -15,7 +15,7 @@ func Update() {
 	repo := config.GH_Repo
 
 	latest, found, err := selfupdate.DetectLatest(repo)
-	if common.CheckErr(err, "detecting letest version") {
+	if common.CheckErr(err, "detect latest version") {
 		return
 	}
 

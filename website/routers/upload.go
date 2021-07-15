@@ -23,13 +23,13 @@ func Upload(c *gin.Context) {
 	}
 
 	file, err := c.FormFile("file")
-	if common.CheckErr(err, "error form file") {
+	if common.CheckErr(err, "form file") {
 		c.String(http.StatusBadRequest, "Error Form File")
 		return
 	}
 
 	f, err := file.Open()
-	if common.CheckErr(err, "error opening file") {
+	if common.CheckErr(err, "open file") {
 		c.String(http.StatusBadRequest, "Error Opening File")
 		return
 	}

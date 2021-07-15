@@ -7,7 +7,6 @@ import (
 	"github.com/andersfylling/snowflake/v5"
 	"gitlab.com/gaming0skar123/go/cdn/common"
 	"gitlab.com/gaming0skar123/go/cdn/config"
-	"gitlab.com/gaming0skar123/go/cdn/database"
 )
 
 var c *disgord.Client
@@ -17,13 +16,8 @@ func apiInit(client *disgord.Client) {
 }
 
 func API(link string) {
-	channel, err := database.FindAPIChannel()
-	if common.CheckErr(err, "FindAPIChannel()") {
-		return
-	}
-
-	s, err := snowflake.GetSnowflake(channel.ID)
-	if common.CheckErr(err, "GetSnowflake("+channel.ID+")") {
+	s, err := snowflake.GetSnowflake(config.API_Channel)
+	if common.CheckErr(err, "get snowflake") {
 		return
 	}
 
