@@ -27,7 +27,7 @@ func API(link string) {
 		return
 	}
 
-	c.SendMsg(s, disgord.Embed{
+	_, err = c.SendMsg(s, disgord.Embed{
 		Title: link,
 		Timestamp: disgord.Time{
 			Time: time.Now().UTC(),
@@ -37,4 +37,8 @@ func API(link string) {
 			URL: link,
 		},
 	})
+
+	if common.CheckErr(err, "send msg") {
+		return
+	}
 }
