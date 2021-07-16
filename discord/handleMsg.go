@@ -21,7 +21,7 @@ func findChannel(channel string) bool {
 func handleMsg(s disgord.Session, data *disgord.MessageCreate) {
 	m := data.Message
 
-	if findChannel(m.ChannelID.String()) {
+	if !findChannel(m.ChannelID.String()) {
 		return
 	}
 
