@@ -33,8 +33,8 @@ cloud.google.com/go/storage v1.10.0/go.mod h1:FLPqc6j+Ki4BU591ie1oL6qBQGu2Bl/tZ9
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
-github.com/andersfylling/disgord v0.27.3 h1:bXug6DfPBQlTo01U3SlPsv8ctt4CaKgagNeekZzWxpg=
-github.com/andersfylling/disgord v0.27.3/go.mod h1:xVShFExKzAKn/jtFdGPanouNsJ8FEe02vo+2nv78YRc=
+github.com/andersfylling/disgord v0.28.3 h1:D8umbMKBW7ePjQnyq6mhrFl11Pvxm9Yc2d3LaFxe610=
+github.com/andersfylling/disgord v0.28.3/go.mod h1:xVShFExKzAKn/jtFdGPanouNsJ8FEe02vo+2nv78YRc=
 github.com/andersfylling/snowflake/v5 v5.0.1 h1:unXbYSij6tRCGJzoLz9zl3nJsqd9hu7bbYSgB8K8/i0=
 github.com/andersfylling/snowflake/v5 v5.0.1/go.mod h1:AdhrB+kewjnQInv8cR7ABe2SGoVXh79njnipUnz1HFc=
 github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdnnjpJbkM4JQ=
