@@ -6,7 +6,7 @@ require (
 	github.com/andersfylling/disgord v0.27.3
 	github.com/andersfylling/snowflake/v5 v5.0.1
 	github.com/blang/semver v3.5.1+incompatible
-	github.com/gin-gonic/gin v1.7.2
+	github.com/gin-gonic/gin v1.7.4
 	github.com/go-playground/validator/v10 v10.7.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
